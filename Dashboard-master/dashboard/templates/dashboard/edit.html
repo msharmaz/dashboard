@@ -1,0 +1,69 @@
+<html>
+<head>
+  <title>Django User Dashboard</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<div class='top_nav'>
+    <h3 class='top_nav_itm'> Test App</h3>
+    <p class='top_nav_itm bold'> Dashboard </p>
+    <p class='top_nav_itm'><a href='/view'> Profile </a></p>
+    <p class='top_nav_itm far_right2'><a href='/reset'> Log off </a></p>
+</div>
+<div class='main'>
+    {% if messages %}
+    {% for msg in messages %}
+      <div class="alert">
+        {{msg.message}}
+      </div>
+    {% endfor %}
+  {% endif %}
+  <h1 class='inline'>Edit profile</h1>
+  <form class='inline' action='/dashboard/admin' method='POST'>
+    {% csrf_token %} 
+    <input class='btn blue long far_right2' type="submit" name='subBtn' value="Return to Dashboard">
+  </form>
+  <div class='disp_info'>
+    <form action='/users/update_info' method='POST'>
+      {% csrf_token %} 
+      <input type=hidden name='id' value='{{uid}}'/>
+      <input type=hidden name='from' value='profile'/>
+      <p>Email Address:</p>
+      <input type="text" name="email" value="{{email}}"></label><br>
+      <p>First Name:</p>
+      <input type="text" name="first_name" value="{{ first_name}}"><br>
+      <p>Last Name:</p>
+      <input type="text" name="last_name" value="{{ last_name}}"></label><br>
+      <p>Level:</p>
+      <select name="user_level">
+        <option value="5">Normal</option>
+        <option value="9">Admin</option>
+      </select> <br>
+      <input class='btn green' type="submit" name='subBtn' value="Save">
+    </form>
+  </div>
+  <div class='disp_pwd'>
+    <form action='/users/update_pwd' method='POST'>
+      {% csrf_token %} 
+      <input type=hidden name='id' value='{{uid}}'/>
+      <input type=hidden name='from' value='profile'/>
+      <p>Password:</p>
+      <input type="password" name="pwd"><br>
+      <p>Confirm Password:</p>
+      <input type="password" name="pwd2"><br>
+      <input class='btn green long' type="submit" name='subBtn' value="Update Password">
+    </form>
+  </div>
+  <div class='disp_desc'>
+    <form action='/users/update_desc' method='POST'>
+      {% csrf_token %} 
+      <input type=hidden name='id' value='{{uid}}'/>
+      <p>Description:</p>
+      <input type="textarea" class='desc' name="description" value='{{description}}'><br>
+      <input class='btn green long' type="submit" name='subBtn' value="Save">
+    </form>
+  </div>
+</div>
+</body>
+</html>

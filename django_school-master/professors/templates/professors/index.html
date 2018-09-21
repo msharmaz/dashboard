@@ -1,0 +1,11 @@
+<h1>Professors</h1>
+
+{% if professors_list %}
+<ul>
+    {% for professor in professors_list %}
+    <li><a href="/professors/{{ professor.id }}/">{{professor.name}}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No Professors teach here.</p>
+{% endif %}

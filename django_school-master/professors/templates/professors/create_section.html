@@ -1,0 +1,14 @@
+<h1>Create a Section</h1>
+<p> Hello Professor {{professor.name}}. Select a course and time for your new section</p>
+
+
+<form action="{% url 'professors:create_section' professor.id %}" method="post">
+    {% csrf_token %}
+    <select id="course_id" name="course_id">
+        {% for course in courses_list %}
+        <option value={{course.id}}>{{course.name}}</option>
+        {% endfor %}
+    </select>
+    <input id="time" type="time" name="time"/>
+    <input type ="submit" value="Create" />
+</form>

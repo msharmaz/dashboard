@@ -1,0 +1,21 @@
+<h1>Professor {{professor.name}}</h1>
+
+<p>
+    <strong>Department</strong>
+    {{ professor.department }}
+</p>
+
+{% if sections %}
+<h3>Sections</h3>
+<ul>
+    {% for section in sections %}
+    <li>
+        <a href="{% url 'courses:detail' section.course.id %}">{{section.course.name }}</a> at {{section.time}} | 
+        <a href="{% url 'sections:delete' section.id %}">Drop this section</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+<a href="{% url 'professors:add_section' professor.id %}">"Teach" a new section</a>
+</br>
+<a href="{% url 'professors:index' %}">Back</a>

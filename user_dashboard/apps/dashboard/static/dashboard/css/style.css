@@ -1,0 +1,50 @@
+nav{
+	border-radius:0px !important;
+}
+
+.navbar-header a:hover{
+	color: red !important;
+}
+
+a:hover{
+	color: red !important;
+}
+
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav li a {
+    color: #fff !important;
+}
+
+.navbar-inverse .navbar-nav li a:hover {
+    color: red !important;
+}
+
+textarea{
+	resize:none;
+}
+
+.wall_content{
+	padding:10px;
+}
+
+.message {
+	margin-top: 20px;
+}
+
+.comment {
+	margin-left: 5%;
+}
+
+.less_margin{
+	margin-top: 2px;
+}
+div.form {
+	margin-top: 20px;
+}
+
+table th {
+	padding: 5px 10px 5px 0px;
+}
+
+.edit_info {
+	margin-top: 20px;
+}

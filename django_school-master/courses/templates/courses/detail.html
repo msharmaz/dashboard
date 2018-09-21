@@ -1,0 +1,22 @@
+<h1>Course {{course.name}}</h1>
+
+<p>
+    <strong>Department</strong>
+    {{ course.department }}
+</p>
+
+<p>
+    <strong>Description</strong>
+    {{ course.description }}
+</p>
+
+{% if sections %}
+<h3>Sections</h3>
+<ul>
+    {% for section in sections %}
+    <li>Taught by <a href="{% url 'professors:detail' section.professor.id %}">{{section.professor.name }}</a> at {{section.time}}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<a href="/courses">Back</a>

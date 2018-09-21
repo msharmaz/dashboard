@@ -1,0 +1,56 @@
+<html>
+<head>
+  <title>Django User Dashboard</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<div class='top_nav'>
+    <h3 class='top_nav_itm'> Test App</h3>
+    <p class='top_nav_itm bold'> Dashboard </p>
+    <p class='top_nav_itm'><a href='/users/edit'> Profile </a></p>
+    <p class='top_nav_itm far_right2'><a href='/reset'> Log off </a></p>
+</div>
+<div class="main">
+  <div>
+    <h3>{{ user.first_name}} {{ user.last_name}}</h3>
+    <p>Registered at: {{user.created_at|date:'b d, Y'}}</p>
+    <p>User ID: {{user.id}}</p>
+    <p>Email address: {{user.email}}</p>
+    <p>Description: {{user.description}}</p>
+  </div>
+  <div class="message">
+      <h3>Leave a message for {{user.first_name}}</h3>
+      <form action='/post_msg' method='POST'>
+        {% csrf_token %}
+        <input type='hidden' name='to_id' value='{{user.id}}'/>
+        <textarea class='post_msg' name='postmsg'></textarea>
+        <input type="submit" name="post_btn" class="btn blue" value="Post">
+      </form>
+  </div> 
+  <div class="display_posts">
+    {% for msg in messages %}
+      <p class="bold inline">{{ msg.msg_poster.first_name }} {{ msg.msg_poster.last_name }} wrote</p> <p class='inline far_right3'> {{ msg.created_at|date:'b d, Y'}}</p>
+      <div class='disp_msg in10'>
+        <p class=''>{{ msg.message }}</p>
+      </div>
+      {% for cmt in msg.tiedto_cmts.all %}
+        <p class="bold in20 inline">{{ cmt.cmt_poster.first_name }} {{ cmt.cmt_poster.last_name }} wrote</p> <p class='inline far_right3'> {{ cmt.created_at|date:'b d, Y' }}</p>
+        <div class='disp_cmt in20'>
+          <p class=''>{{ cmt.comment }}</p>
+        </div>
+      {% endfor %}
+      <div class="comment in20">
+          <form action='/post_cmt' method='POST'>
+            {% csrf_token %}
+            <input type="hidden" name="msg_id" value="{{ msg.id }}">
+            <input type="hidden" name="to_id" value="{{ msg.msg_poster.id }}">            
+            <textarea class='post_cmt' name='postcmt'>write a message</textarea>
+            <input type="submit" name="post_btn" class="btn green" value="Post">
+          </form>
+      </div> 
+    {% endfor %}
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  {% load staticfiles %}
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <title>Home Page</title>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-lightgreen" style="background-color:lightgreen" >
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Post</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Contact
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/new_post">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="/#/">About</a>
+      </li>
+    </ul>
+        <a class="nav-link disabled" href="/login">Login</a>
+        <a class="nav-link disabled" href="/register">Register</a>
+  </div>
+</nav>
+<style>
+
+  .navbar{
+    margin-top: 20px;
+  }
+
+  .form-inline .form-control{
+    width: 500px;
+    margin: auto;
+  }
+
+  .title{
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  .form{
+    width: 810px;
+    margin: auto;
+  }
+
+  .top{
+    text-align: center;
+  }
+
+  img:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+  }
+
+  div.info7{
+    margin-left: 150px;
+    overflow: scroll;
+    padding-bottom: 15em;
+  }
+
+  div.user{
+  	align-content: top;
+  	padding-left: 5em;
+
+  }
+</style>
+
+</head>
+
+<body class="body" style="background-color:#f6f6f6">
+  	<div class="title">
+    	<h1>WELCOME</h1>
+ 	</div>
+
+
+
+<div class="form">
+  <form class="form-inline" method="post" action="/search/">
+        {% csrf_token %}<br>
+
+        <label for="category">Search By</label>
+            <select class="form-category my-2" name="dropdown" id="category" style="background-color: white">
+              <option value="All">- - - - - - - - - - - -</option>
+              <option value="Oil Problems">Oil Problems</option>
+              <option value="Water Problems">Water Problems</option>
+              <option value="Storms">Storms</option>
+              <option value="Others">Others</option>
+            </select>
+
+    <input class="form-control mr-sm-2" type="search" aria-label="Search" name="srh" placeholder="Enter search">
+
+    <button class="btn btn-outline-success my-2 my-sm-2" style="margin-top: 250px" type="submit">Search</button>
+
+  </form><br><br>
+</div>
+
+
+<div class="info7">
+    <form method="POST">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit">Signup</button>
+    </form>
+</div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

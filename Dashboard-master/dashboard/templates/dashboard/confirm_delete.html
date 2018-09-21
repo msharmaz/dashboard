@@ -1,0 +1,27 @@
+<html>
+<head>
+  <title>Django User Dashboard</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<div class='top_nav'>
+    <h3 class='top_nav_itm'> Test App</h3>
+    <p class='top_nav_itm bold'> Dashboard </p>
+    <p class='top_nav_itm'><a href='/view'> Profile </a></p>
+    <p class='top_nav_itm far_right2'><a href='/reset'> Log off </a></p>
+</div>
+<div class=main>
+<h2>Are you sure you want to delete the following user?</h2>
+  <form action='/delete/{{uid}}' method='POST'>
+    {% csrf_token %} 
+    <p>Name: {{ first_name }} {{ last_name }} </p>
+    <p>Email: {{ email }} </p>    
+    <p>Level: {{ level }} </p> 
+    <p>Description: {{description}}</p>
+    <input class='btn' name="subBtn" type="submit" value="No"> 
+    <input class='btn Red long' name="subBtn" type="submit" value="Yes! I want to delete file"/>
+  </form>
+</div>
+</body>
+</html>

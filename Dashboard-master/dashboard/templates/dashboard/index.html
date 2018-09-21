@@ -1,0 +1,27 @@
+<html>
+<head>
+  <title>Dashboard</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<div class='wrapper'>
+    <div class='top_nav'>
+        <h3 class='top_nav_itm'> Test App</h3>
+        <p class='top_nav_itm'><a href="/"> Home </a></p>
+        <p class='top_nav_itm far_right'><a href='signin'> Sign In </a></p>
+    </div>
+    <div class='main'>
+        <div class='display'>
+            <h2 class='bold'> Welcome to the Test</h2>
+            <p>We're going to biuld a cool application using a MVC framework!
+            </p>
+            <form action='signin' method='GET'>
+                {% csrf_token %}
+                <input class='btn' type="submit" value="Start">
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

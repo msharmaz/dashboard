@@ -1,0 +1,38 @@
+<html>
+<head>
+  <title>Django User Dashboard</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<div class='top_nav'>
+    <h3 class='top_nav_itm'> Test App</h3>
+    <p class='top_nav_itm'><a href="/"> Home </a></p>
+    <p class='top_nav_itm far_right'><a href='signin'> Sign In </a></p>
+</div>
+<div class="main">
+    <div class="error">
+        {% if messages %}
+          {% for msg in messages %}
+            <div class="alert">
+              {{msg.message}}
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div> 
+  <div>
+    <h3>Signin</h3><br>
+    <form action='signin' method='POST'>
+      {% csrf_token %}
+      <p>Email Address:</p>
+      <input type="text" name="email" id="email">
+      <p>Password:</p>
+      <input type="password" name="pwd" id="pwd"><br>
+      <input type="submit" name="btn" class="btn" value="Sign in">
+    </form>
+    <br>
+    <a href="/register">Don't have an account? Register</a>
+  </div>
+</div>
+</body>
+</html>

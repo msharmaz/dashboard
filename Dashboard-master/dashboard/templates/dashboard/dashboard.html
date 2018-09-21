@@ -1,0 +1,42 @@
+<!doctype HTML>
+<html>
+<head>
+  <title>Django User Dashboard</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<div class='top_nav'>
+    <h3 class='top_nav_itm'> Test App</h3>
+    <p class='top_nav_itm bold'> Dashboard </p>
+    <p class='top_nav_itm'><a href='/users/edit'> Profile </a></p>
+    <p class='top_nav_itm far_right2'><a href='/reset'> Log off </a></p>
+</div>
+<div class='main'>
+<h1>All Users</h1>
+  <div class="users_table">
+    <div class="header">
+      <p class="id bold">ID</p>
+      <p class="name bold">Name</p>
+      <p class="email bold">Email</p>
+      <p class="date bold">Created</p>
+      <p class="level bold">User Level</p>   
+    </div>
+    {% for user in users %}   
+    {% csrf_token %}
+    <div class="row">
+      <p class="id">{{user.id}}</p>
+      <p class="name"><a href="/users/show/{{user.id}}">{{ user.first_name }} {{ user.last_name}}</a></p>
+      <p class="email">{{user.email}}</p>
+      <p class="date">{{user.created_at|date:'b d, Y'}}</p>
+      {% if user.user_level == 9 %}
+        <p class="level">admin</p>
+      {% else %}
+        <p class="level">normal</p>
+      {% endif %}
+    </div>  
+    {% endfor %}
+  </div>
+</div>
+</body>
+</html>

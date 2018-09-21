@@ -1,0 +1,47 @@
+<html>
+<head>
+  <title>Django User Dashboard</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<div class='top_nav'>
+    <h3 class='top_nav_itm'> Test App</h3>
+    <p class='top_nav_itm bold'> Dashboard </p>
+    <p class='top_nav_itm'><a href='/view'> Profile </a></p>
+    <p class='top_nav_itm far_right2'><a href='/reset'> Log off </a></p>
+</div>
+<div class='main'>
+    {% if messages %}
+    {% for msg in messages %}
+      <div class="alert">
+        {{msg.message}}
+      </div>
+    {% endfor %}
+  {% endif %}
+  <h1 class='inline'>Add a new user</h1>
+  <form class='inline' action='/dashboard/admin' method='POST'>
+    {% csrf_token %} 
+    <input class='btn blue long far_right3' type="submit" name='subBtn' value="Return to Dashboard">
+  </form>
+  <div class='new_info'>
+    <form action='register' method='POST'>
+      {% csrf_token %}
+      <input type="hidden" name="from" value="new">
+      <p>Email:</p>
+      <input type="text" name="email" id="email"><br>
+      <p>First Name:</p>
+      <input type="text" name="first_name"><br>
+      <p>Last Name:</p>
+      <input type="text" name="last_name"><br>
+      <p>Password:</p>
+      <input type="password" name="pwd"><br>
+      <p>Confirm Password:</p>
+      <input type="password" name="pwd2"><br>
+      <input class='btn green' name='subBtn' type="submit" value="Create">
+    </form>
+  </div>
+
+</div>
+</body>
+</html>

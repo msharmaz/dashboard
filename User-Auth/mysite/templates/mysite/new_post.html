@@ -1,0 +1,12 @@
+{% extends 'mysite/home.html' %}
+
+{% block contentpost %}
+<div class="offset-3 col-md-6">
+<form method="post">{% csrf_token %}
+	<div class="form-group">
+    {{form.as_p}}
+	</div>
+    <button class= "btn btn-success" type="submit">Submit</button>
+</form>
+</div>
+{% endblock %}
